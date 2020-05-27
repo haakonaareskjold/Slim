@@ -1,2 +1,5 @@
 vendor/
 .idea/
+cache/*
+# exception to the rule
+!cache/.gitkeep
