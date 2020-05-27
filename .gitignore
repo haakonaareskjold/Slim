@@ -1,5 +1,5 @@
 vendor/
 .idea/
-cache/*
+cache/*.php
 # exception to the rule
 !cache/.gitkeep
