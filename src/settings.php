@@ -2,7 +2,7 @@
 
 use Psr\Container\ContainerInterface;
 
-return function (ContainerInterface $container) {
+return function (\DI\Container $container) {
     $container->set('settings', function() {
         return [
             'displayErrorDetails' => true,
