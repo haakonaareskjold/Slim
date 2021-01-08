@@ -9,7 +9,7 @@ return function (App $app) {
 
     $app->get('/', [WelcomeController::class, 'index']);
 
-    $app->get('/home/{name}', function (Response $response) {
+    $app->get('/hello/{name}', function (Response $response) {
         $name = 'Haakon';
         return view($response, 'home', compact('name'));
     });
