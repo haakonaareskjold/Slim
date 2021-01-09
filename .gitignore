@@ -3,3 +3,4 @@ vendor/
 storage/views/*.php
 # exception to the rule
 !storage/.gitkeep
+db.sqlite

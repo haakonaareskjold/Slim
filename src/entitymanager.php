@@ -17,7 +17,7 @@ return function () {
 // database configuration parameters
     $conn = array(
         'driver' => 'pdo_sqlite',
-        'path' => __DIR__ . '/db.sqlite',
+        'path' => __DIR__ . '/../db.sqlite',
     );
 
 // obtaining the entity manager

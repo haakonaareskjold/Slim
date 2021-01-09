@@ -2,22 +2,43 @@
 
 namespace App\Https\Controllers;
 
-use App\Models\UserRepository;
+use App\Models\User;
+use Doctrine\ORM\EntityManagerInterface;
+use Psr\Http\Message\ResponseInterface as Response;
+
 
 class UserController
 {
-    private $userRepository;
+    /**
+     * @var EntityManagerInterface
+     */
+    private EntityManagerInterface $entityManager;
+    /**
+     * @var User
+     */
+    private User $user;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct
+    (
+        EntityManagerInterface $entityManager,
+        User $user
+    )
     {
-        $this->userRepository = $userRepository;
+        $this->entityManager = $entityManager;
+        $this->user = $user;
     }
 
-    public function delete($request, $response)
+    public function show(Response $response, $id)
     {
-        $this->userRepository->remove($request->getAttribute('id'));
+        $query = $this->entityManager->find('App\Models\User', $id);
 
-        $response->getBody()->write('User deleted');
-        return $response;
+        return view($response, 'users.show', compact('query'));
+    }
+
+    public function index(Response $response)
+    {
+        $query = $this->entityManager->getRepository('App\Models\User')->findAll();
+
+        return view($response, 'users.index', compact('query'));
     }
 }

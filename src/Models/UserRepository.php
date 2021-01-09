@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-class UserRepository
+trait UserRepository
 {
-    public function remove($getAttribute)
+    public function findAll(User $user)
     {
-        //
+            return sprintf("-%s\n", $user->getName());
     }
 }
