@@ -1,11 +1,36 @@
 <?php
 
+
 namespace App\Models;
 
-trait UserRepository
+
+use Doctrine\ORM\EntityManagerInterface;
+
+class UserRepository implements UserRepositoryInterface
 {
-    public function findAll(User $user)
+
+    private EntityManagerInterface $entityManager;
+
+    public function __construct
+    (
+        EntityManagerInterface $entityManager
+    )
     {
-            return sprintf("-%s\n", $user->getName());
+        $this->entityManager = $entityManager;
+    }
+
+    public function getAllUsers()
+    {
+        return $this->entityManager->getRepository('App\Models\User')->findAll();
+    }
+
+    public function getUserById($id)
+    {
+        return $this->entityManager->find('App\Models\User', $id);
+    }
+
+    public function createOrUpdate($id = null)
+    {
+        // TODO: Implement createOrUpdate() method.
     }
 }
