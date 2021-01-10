@@ -25,15 +25,16 @@ class UserController
         $this->user = $user;
     }
 
-    public function show(Response $response, $id)
+    public function show(Response $response, $id): Response
     {
         $query = $this->user->getUserById($id);
 
         return view($response, 'users.show', compact('query'));
     }
 
-    public function index(Response $response)
+    public function index(Response $response): Response
     {
+        $query = $this->user->getAllUsers();
 
         return view($response, 'users.index', compact('query'));
     }
