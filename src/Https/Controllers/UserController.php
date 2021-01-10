@@ -3,9 +3,9 @@
 namespace App\Https\Controllers;
 
 
-use App\Models\UserRepository;
 use App\Models\UserRepositoryInterface;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\RequestInterface as Request;
 
 
 class UserController
@@ -24,6 +24,27 @@ class UserController
         $this->user = $user;
     }
 
+    public function index(Response $response): Response
+    {
+        $query = $this->user->getAllUsers();
+
+        return view($response, 'users.index', compact('query'));
+    }
+
+    public function create(Response $response): Response
+    {
+        return view($response, 'users.create');
+    }
+
+    public function store(Request $request, Response $response): Response
+    {
+
+        $name = $request->getParsedBody();
+        $this->user->createUser($name);
+
+        return $response->withStatus(302)->withHeader('Location', '/users');
+    }
+
     public function show(Response $response, $id): Response
     {
         $query = $this->user->getUserById($id);
@@ -31,10 +52,4 @@ class UserController
         return view($response, 'users.show', compact('query'));
     }
 
-    public function index(Response $response): Response
-    {
-        $query = $this->user->getAllUsers();
-
-        return view($response, 'users.index', compact('query'));
-    }
 }

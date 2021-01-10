@@ -29,8 +29,12 @@ class UserRepository implements UserRepositoryInterface
         return $this->entityManager->find('App\Models\User', $id);
     }
 
-    public function createOrUpdate($id = null)
+    public function createUser($name)
     {
-        // TODO: Implement createOrUpdate() method.
+        $user = new \App\Models\User();
+        $user->setName($name['name']);
+
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
     }
 }

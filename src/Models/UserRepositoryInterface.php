@@ -9,5 +9,5 @@ interface UserRepositoryInterface
 
     public function getUserById($id);
 
-    public function createOrUpdate($id = null);
+    public function createUser($name);
 }
