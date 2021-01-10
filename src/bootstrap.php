@@ -24,7 +24,8 @@ $containerBuilder->useAutowiring(true);
 
 $containerBuilder->addDefinitions([
     \Doctrine\ORM\EntityManagerInterface::class => DI\Factory($entitymanagerFactory),
-    \Psr\Http\Server\MiddlewareInterface::class => DI\Factory($middleware)
+    \Psr\Http\Server\MiddlewareInterface::class => DI\Factory($middleware),
+    \App\Models\UserRepositoryInterface::class => DI\get(\App\Models\UserRepository::class)
 ]);
 
 $container = $containerBuilder->build();

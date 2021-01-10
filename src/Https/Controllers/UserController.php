@@ -2,10 +2,9 @@
 
 namespace App\Https\Controllers;
 
-use App\Models\User;
+
 use App\Models\UserRepository;
 use App\Models\UserRepositoryInterface;
-use Doctrine\ORM\EntityManagerInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 
 
@@ -19,7 +18,7 @@ class UserController
 
     public function __construct
     (
-        UserRepository $user
+        UserRepositoryInterface $user
     )
     {
         $this->user = $user;

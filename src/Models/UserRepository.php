@@ -19,12 +19,12 @@ class UserRepository implements UserRepositoryInterface
         $this->entityManager = $entityManager;
     }
 
-    public function getAllUsers()
+    public function getAllUsers(): array
     {
         return $this->entityManager->getRepository('App\Models\User')->findAll();
     }
 
-    public function getUserById($id)
+    public function getUserById($id): ?object
     {
         return $this->entityManager->find('App\Models\User', $id);
     }
