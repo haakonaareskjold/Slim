@@ -13,4 +13,9 @@ class WelcomeController
 
         return view($response, 'app');
     }
+
+    public function show(Response $response, $name): Response
+    {
+        return view($response, 'home', compact('name'));
+    }
 }

@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  php:
+    container_name: Slim_php
+    image: php:8.0.1-alpine3.12
+    working_dir: /slim
+    command: php -S 0.0.0.0:8000 -t public
+    environment:
+      docker: 'true'
+    volumes:
+    - .:/slim
+    ports:
+    - 8000:8000
