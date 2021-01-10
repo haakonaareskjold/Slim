@@ -2,11 +2,15 @@
 
 @section('content')
     <div>
-        @foreach($query as $user)
+        @forelse($query as $user)
             <p>
                 User {{$user->getName()}} has an ID of {{$user->getId()}}
             </p>
-        @endforeach
+        @empty
+            <p>
+                No users found.
+            </p>
+        @endforelse
     </div>
 
 @endsection
