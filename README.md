@@ -1,5 +1,5 @@
 # Slim
 
-1. install composer deps `composer install`
+1. start the app with `docker-compose up -d`
 2. migrate database `vendor/bin/doctrine orm:schema-tool:update --force`
-3. either run app with docker `docker-compose up -d` or with `composer start`
+3. go to `localhost:8000` in your browser

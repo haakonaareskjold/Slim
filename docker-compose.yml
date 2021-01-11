@@ -12,3 +12,19 @@ services:
     - .:/slim
     ports:
     - 8000:8000
+    networks:
+      - bridge
+
+  composer:
+    container_name: composer
+    image: composer:2.0.8
+    working_dir: /slim
+    command: composer install
+    volumes:
+    - .:/slim
+    networks:
+      - bridge
+
+networks:
+  bridge:
+    driver: bridge
