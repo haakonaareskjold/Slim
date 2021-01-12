@@ -8,28 +8,19 @@ require_once __DIR__. '/../vendor/autoload.php';
 
 $container = new Container();
 
-// Set up settings
-$settings = require __DIR__ . '/../src/settings.php';
-$settings($container);
-
 $entitymanagerFactory = require __DIR__ . '/../src/entitymanager.php';
 $entitymanagerFactory($container);
 
-// Set up routes
-$middleware = require __DIR__ . '/../src/middleware.php';
-$settings($container);
 
 $containerBuilder = new \DI\ContainerBuilder();
 $containerBuilder->useAutowiring(true);
 
 $containerBuilder->addDefinitions([
     \Doctrine\ORM\EntityManagerInterface::class => DI\Factory($entitymanagerFactory),
-    \Psr\Http\Server\MiddlewareInterface::class => DI\Factory($middleware),
     \App\Models\UserRepositoryInterface::class => DI\get(\App\Models\UserRepository::class)
 ]);
 
 $container = $containerBuilder->build();
-
 
 // Instantiate the app and Build PHP-DI Container instance
 $app = AppFactory::create($container);

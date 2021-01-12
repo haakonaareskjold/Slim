@@ -5,7 +5,7 @@ use Jenssegers\Blade\Blade;
 use Psr\Http\Message\ResponseInterface as Response;
 
 if (!function_exists('view')) {
-    function view(Response $response, $template, $with = [])
+    function view(Response $response, $template, $with = []): Response
     {
         $cache = __DIR__ . '/../storage/views';
         $views = __DIR__ . '/../resources/views';

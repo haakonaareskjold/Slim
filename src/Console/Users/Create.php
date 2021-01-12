@@ -49,7 +49,7 @@ class Create extends Command
     {
        $this->UserRepository->createUser($input->getArgument('name'));
 
-       $output->write("A new user has been created.");
+       $output->write("A new user with the name of '{$input->getArgument('name')}' has been created.");
        return Command::SUCCESS;
     }
 }
