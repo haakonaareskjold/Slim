@@ -1,6 +1,6 @@
 vendor/
 .idea/
+db.sqlite
 storage/views/*.php
 # exception to the rule
-!storage/.gitkeep
-db.sqlite
+!storage/views/.gitkeep
