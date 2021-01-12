@@ -19,7 +19,7 @@ services:
     container_name: composer
     image: composer:2.0.8
     working_dir: /slim
-    command: composer install
+    command: composer install --ignore-platform-reqs
     volumes:
     - .:/slim
     networks:
