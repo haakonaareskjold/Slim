@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User
 {
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -23,14 +22,14 @@ class User
     /**
      * @ORM\Column(type="string")
      */
-    protected string $name;
+    protected $name;
 
     public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }

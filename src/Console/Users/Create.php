@@ -3,7 +3,7 @@
 
 namespace App\Console\Users;
 
-use App\Models\User;
+use App\Models\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -15,14 +15,22 @@ class Create extends Command
 
     private EntityManagerInterface $entityManager;
 
+    /**
+     * @var UserRepository
+     */
+    private UserRepository $UserRepository;
+
     public function __construct
     (
         EntityManagerInterface $entityManager,
+        UserRepository $userRepository
     )
     {
         parent::__construct();
 
         $this->entityManager = $entityManager;
+
+        $this->UserRepository = $userRepository;
     }
 
     protected function configure()
@@ -39,15 +47,9 @@ class Create extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $name = $input->getArgument('name');
+       $this->UserRepository->createUser($input->getArgument('name'));
 
-        $user = new User();
-        $user->setName($name);
-
-        $this->entityManager->persist($user);
-        $this->entityManager->flush();
-
-        $output->write("User with the name '$name' has been created!");
-        return Command::SUCCESS;
+       $output->write("A new user has been created.");
+       return Command::SUCCESS;
     }
 }

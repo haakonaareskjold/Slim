@@ -40,7 +40,8 @@ class UserController
     {
 
         $name = $request->getParsedBody();
-        $this->user->createUser($name);
+
+        $this->user->createUser(implode($name));
 
         return $response->withStatus(302)->withHeader('Location', '/users');
     }
