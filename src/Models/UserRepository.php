@@ -6,6 +6,10 @@ namespace App\Models;
 
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * Class UserRepository
+ * @package App\Models
+ */
 class UserRepository implements UserRepositoryInterface
 {
 
@@ -19,19 +23,38 @@ class UserRepository implements UserRepositoryInterface
         $this->entityManager = $entityManager;
     }
 
-    public function getAllUsers(): array
+    /**
+     * @return object|array
+     */
+    public function getAllUsers(): object|array
     {
-        return $this->entityManager->getRepository('App\Models\User')->findAll();
+        $user = $this->entityManager->getRepository('App\Models\User')->findAll();
+
+        if ($user !== null) {
+            return $user;
+        } else {
+            return $user  = [];
+        }
     }
 
-    public function getUserById($id): ?object
+    /**
+     * @param $id
+     * @return object|array
+     */
+    public function getUserById($id): object|array
     {
-        return $this->entityManager->find('App\Models\User', $id);
+        $user = $this->entityManager->find('App\Models\User', $id);
+
+        if ($user !== null) {
+            return $user;
+        } else {
+            return $user  = [];
+        }
     }
 
     public function createUser($name)
     {
-        $user = new \App\Models\User();
+        $user = new User();
         $user->setName($name['name']);
 
         $this->entityManager->persist($user);
