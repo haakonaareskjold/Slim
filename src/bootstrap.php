@@ -1,24 +1,22 @@
 <?php
 
-use DI\Container;
 use DI\Bridge\Slim\Bridge as AppFactory;
+use DI\ContainerBuilder;
 
 require_once __DIR__. '/../vendor/autoload.php';
 
 
-$container = new Container();
+$containerBuilder = new ContainerBuilder();
 
-$entitymanagerFactory = require __DIR__ . '/../src/entitymanager.php';
-$entitymanagerFactory($container);
+$settings = require __DIR__ . '/../app/settings.php';
+$settings($containerBuilder);
 
+$entityManager = require __DIR__ . '/../app/entitymanager.php';
+$entityManager($containerBuilder);
 
-$containerBuilder = new \DI\ContainerBuilder();
-$containerBuilder->useAutowiring(true);
+$repositories = require __DIR__. '/../app/repositories.php';
+$repositories($containerBuilder);
 
-$containerBuilder->addDefinitions([
-    \Doctrine\ORM\EntityManagerInterface::class => DI\Factory($entitymanagerFactory),
-    \App\Models\UserRepositoryInterface::class => DI\get(\App\Models\UserRepository::class)
-]);
 
 $container = $containerBuilder->build();
 
@@ -26,7 +24,7 @@ $container = $containerBuilder->build();
 $app = AppFactory::create($container);
 
 // Set up routes
-$routes = require __DIR__ . '/../src/routes.php';
+$routes = require __DIR__ . '/../app/routes.php';
 $routes($app);
 
 $app->run();

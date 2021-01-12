@@ -4,7 +4,6 @@
 namespace App\Console\Users;
 
 use App\Models\UserRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -13,8 +12,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 class Create extends Command
 {
 
-    private EntityManagerInterface $entityManager;
-
     /**
      * @var UserRepository
      */
@@ -22,13 +19,10 @@ class Create extends Command
 
     public function __construct
     (
-        EntityManagerInterface $entityManager,
         UserRepository $userRepository
     )
     {
         parent::__construct();
-
-        $this->entityManager = $entityManager;
 
         $this->UserRepository = $userRepository;
     }
