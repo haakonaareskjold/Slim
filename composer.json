@@ -18,6 +18,8 @@
     },
     "scripts": {
         "start": "php -S localhost:8000 -t public",
-        "migrate": "vendor/bin/doctrine orm:schema-tool:update --force"
+        "post-autoload-dump": [
+            "@php vendor/bin/doctrine orm:schema-tool:update --force"
+        ]
     }
 }
