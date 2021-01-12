@@ -1,11 +1,10 @@
 <?php
 
 use Slim\App;
-
 return function (App $app) {
 
-    // Welcome
-    $app->get('/', \App\Https\Controllers\WelcomeController::class);
+    // Rerouting to main page
+    $app->get('/', \App\Https\Controllers\RerouteController::class);
 
     // Users
     $app->get('/users', [\App\Https\Controllers\UserController::class, 'index']);
@@ -13,5 +12,4 @@ return function (App $app) {
     $app->post('/users', [\App\Https\Controllers\UserController::class, 'store']);
     $app->get('/users/{id}', [\App\Https\Controllers\UserController::class, 'show']);
 
-    $app->addErrorMiddleware(true, true, true);
 };

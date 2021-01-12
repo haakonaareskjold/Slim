@@ -27,4 +27,7 @@ $app = AppFactory::create($container);
 $routes = require __DIR__ . '/../app/routes.php';
 $routes($app);
 
+// middleware
+$app->addErrorMiddleware(true, true, true);
+
 $app->run();
