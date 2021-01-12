@@ -3,6 +3,7 @@
 namespace App\Https\Controllers;
 
 
+use App\Helpers;
 use App\Models\UserRepositoryInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\RequestInterface as Request;
@@ -28,12 +29,12 @@ class UserController
     {
         $query = $this->user->getAllUsers();
 
-        return view($response, 'users.index', compact('query'));
+        return Helpers::view($response, 'users.index', compact('query'));
     }
 
     public function create(Response $response): Response
     {
-        return view($response, 'users.create');
+        return Helpers::view($response, 'users.create');
     }
 
     public function store(Request $request, Response $response): Response
@@ -50,7 +51,7 @@ class UserController
     {
         $query = $this->user->getUserById($id);
 
-        return view($response, 'users.show', compact('query'));
+        return Helpers::view($response, 'users.show', compact('query'));
     }
 
 }
