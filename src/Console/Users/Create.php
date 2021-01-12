@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Console\Users;
 
 use App\Models\UserRepository;
@@ -17,11 +16,9 @@ class Create extends Command
      */
     private UserRepository $UserRepository;
 
-    public function __construct
-    (
+    public function __construct(
         UserRepository $userRepository
-    )
-    {
+    ) {
         parent::__construct();
 
         $this->UserRepository = $userRepository;
@@ -41,9 +38,9 @@ class Create extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-       $this->UserRepository->createUser($input->getArgument('name'));
+        $this->UserRepository->createUser($input->getArgument('name'));
 
-       $output->write("A new user with the name of '{$input->getArgument('name')}' has been created.");
-       return Command::SUCCESS;
+        $output->write("A new user with the name of '{$input->getArgument('name')}' has been created.");
+        return Command::SUCCESS;
     }
 }

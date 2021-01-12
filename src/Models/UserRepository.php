@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -15,11 +13,9 @@ class UserRepository implements UserRepositoryInterface
 
     private EntityManagerInterface $entityManager;
 
-    public function __construct
-    (
+    public function __construct(
         EntityManagerInterface $entityManager
-    )
-    {
+    ) {
         $this->entityManager = $entityManager;
     }
 

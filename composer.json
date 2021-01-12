@@ -8,6 +8,9 @@
         "doctrine/orm": "^2.8",
         "symfony/console": "^5.2"
     },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5"
+    },
     "autoload": {
         "psr-4": {
             "App\\": "src/"

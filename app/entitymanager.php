@@ -21,10 +21,10 @@ return function (ContainerBuilder $containerBuilder) {
 
              $config->setMetadataDriverImpl(
                  new AnnotationDriver(
-                     new AnnotationReader,
+                     new AnnotationReader(),
                      $doctrineSettings['metadata_dirs']
                  )
-                );
+             );
 
             return EntityManager::create($doctrineSettings['connection'], $config);
         }

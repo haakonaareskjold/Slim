@@ -20,7 +20,7 @@ services:
     image: composer:2.0.8
     user: 1000:1000 #change this if your user isn't on 1000
     working_dir: /slim
-    command: composer install --ignore-platform-reqs
+    command: composer install --no-dev --ignore-platform-reqs
     volumes:
     - .:/slim
     networks:

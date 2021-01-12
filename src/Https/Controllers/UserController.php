@@ -2,12 +2,10 @@
 
 namespace App\Https\Controllers;
 
-
 use App\Helpers;
 use App\Models\UserRepositoryInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\RequestInterface as Request;
-
 
 class UserController
 {
@@ -17,11 +15,9 @@ class UserController
      */
     private UserRepositoryInterface $user;
 
-    public function __construct
-    (
+    public function __construct(
         UserRepositoryInterface $user
-    )
-    {
+    ) {
         $this->user = $user;
     }
 
@@ -53,5 +49,4 @@ class UserController
 
         return Helpers::view($response, 'users.show', compact('query'));
     }
-
 }

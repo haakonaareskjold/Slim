@@ -3,7 +3,7 @@
 use DI\Bridge\Slim\Bridge as AppFactory;
 use DI\ContainerBuilder;
 
-require_once __DIR__. '/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 
 $containerBuilder = new ContainerBuilder();
@@ -14,7 +14,7 @@ $settings($containerBuilder);
 $entityManager = require __DIR__ . '/../app/entitymanager.php';
 $entityManager($containerBuilder);
 
-$repositories = require __DIR__. '/../app/repositories.php';
+$repositories = require __DIR__ . '/../app/repositories.php';
 $repositories($containerBuilder);
 
 
