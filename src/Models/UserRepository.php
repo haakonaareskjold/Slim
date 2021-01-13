@@ -13,10 +13,17 @@ class UserRepository implements UserRepositoryInterface
 
     private EntityManagerInterface $entityManager;
 
+    /**
+     * @var User
+     */
+    private User $user;
+
     public function __construct(
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        User $user
     ) {
         $this->entityManager = $entityManager;
+        $this->user = $user;
     }
 
     /**
@@ -50,10 +57,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function createUser($name)
     {
-        $user = new User();
-        $user->setName($name);
-
-        $this->entityManager->persist($user);
+        $this->entityManager->persist($this->user->setName($name));
         $this->entityManager->flush();
     }
 }
