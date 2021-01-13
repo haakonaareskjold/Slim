@@ -49,4 +49,12 @@ class UserController
 
         return Helpers::view($response, 'users.show', compact('query'));
     }
+
+    public function edit(Response $response, $id): Response
+    {
+        $query = $this->user->getUserById($id);
+        # TODO fix edit and edit.blade.php
+
+        return Helpers::view($response, 'users.edit', compact('query'));
+    }
 }
