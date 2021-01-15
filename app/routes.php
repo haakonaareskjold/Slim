@@ -3,6 +3,7 @@
 use Slim\App;
 
 return function (App $app) {
+    $app->addRoutingMiddleware();
 
     // Redirect to users
     $app->redirect('/', '/users', 301);
@@ -13,4 +14,7 @@ return function (App $app) {
     $app->post('/users', [\App\Https\Controllers\UserController::class, 'store']);
     $app->get('/users/{id}', [\App\Https\Controllers\UserController::class, 'show']);
     $app->get('/users/{id}/edit', [\App\Https\Controllers\UserController::class, 'edit']);
+    $app->post('/users/{id}', [\App\Https\Controllers\UserController::class, 'update']);
+
+    $app->addBodyParsingMiddleware();
 };

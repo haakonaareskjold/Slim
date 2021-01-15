@@ -53,8 +53,19 @@ class UserController
     public function edit(Response $response, $id): Response
     {
         $query = $this->user->getUserById($id);
-        # TODO fix edit and edit.blade.php
 
         return Helpers::view($response, 'users.edit', compact('query'));
+    }
+
+    public function update(Request $request, $id, Response $response): Response
+    {
+
+        $name = $request->getParsedBody();
+
+
+        $this->user->update($id, $name['name']);
+
+
+        return $response->withStatus(302)->withHeader('Location', '/users');
     }
 }

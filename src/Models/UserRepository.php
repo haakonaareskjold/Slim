@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
@@ -59,5 +60,20 @@ class UserRepository implements UserRepositoryInterface
     {
         $this->entityManager->persist($this->user->setName($name));
         $this->entityManager->flush();
+    }
+
+    public function update(int $id, string $name)
+    {
+       $user = $this->getUserById($id);
+
+        if (!$user) {
+            throw new Exception(
+                die('No User found for id '.$id)
+            );
+        }
+
+        $user->setName(($name));
+        $this->entityManager->flush();
+
     }
 }

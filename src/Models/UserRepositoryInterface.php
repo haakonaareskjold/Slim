@@ -9,4 +9,6 @@ interface UserRepositoryInterface
     public function getUserById($id);
 
     public function createUser($name);
+
+    public function update(int $id, string $name);
 }
