@@ -61,9 +61,14 @@ class UserController
     {
         $name = $request->getParsedBody();
 
-
         $this->user->update($id, $name['name']);
 
+        return $response->withStatus(302)->withHeader('Location', '/users');
+    }
+
+    public function destroy($id, Response $response): Response
+    {
+        $this->user->delete($id);
 
         return $response->withStatus(302)->withHeader('Location', '/users');
     }

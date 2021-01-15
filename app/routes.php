@@ -15,6 +15,7 @@ return function (App $app) {
     $app->get('/users/{id}', [\App\Https\Controllers\UserController::class, 'show']);
     $app->get('/users/{id}/edit', [\App\Https\Controllers\UserController::class, 'edit']);
     $app->post('/users/{id}', [\App\Https\Controllers\UserController::class, 'update']);
+    $app->delete('/users/{id}', [\App\Https\Controllers\UserController::class, 'destroy']);
 
     $app->addBodyParsingMiddleware();
 };

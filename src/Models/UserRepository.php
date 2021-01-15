@@ -74,6 +74,19 @@ class UserRepository implements UserRepositoryInterface
 
         $user->setName(($name));
         $this->entityManager->flush();
+    }
 
+    public function delete($id)
+    {
+        $user = $this->entityManager->find('App\Models\User', $id);
+
+        if (!$user) {
+            throw new Exception(
+                die('No User found for id '.$id)
+            );
+        }
+
+        $this->entityManager->remove($user);
+        $this->entityManager->flush();
     }
 }
