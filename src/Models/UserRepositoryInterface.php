@@ -10,5 +10,5 @@ interface UserRepositoryInterface
 
     public function createUser($name);
 
-    public function update(int $id, string $name);
+    public function update(string $id, string $name);
 }

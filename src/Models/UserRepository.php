@@ -62,7 +62,7 @@ class UserRepository implements UserRepositoryInterface
         $this->entityManager->flush();
     }
 
-    public function update(int $id, string $name)
+    public function update(string $id , string $name)
     {
        $user = $this->getUserById($id);
 

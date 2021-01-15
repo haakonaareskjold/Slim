@@ -59,7 +59,6 @@ class UserController
 
     public function update(Request $request, $id, Response $response): Response
     {
-
         $name = $request->getParsedBody();
 
 
