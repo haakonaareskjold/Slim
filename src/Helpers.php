@@ -3,6 +3,7 @@
 namespace App;
 
 use Jenssegers\Blade\Blade;
+use JetBrains\PhpStorm\NoReturn;
 use Psr\Http\Message\ResponseInterface as Response;
 
 class Helpers
@@ -17,7 +18,7 @@ class Helpers
         return $response;
     }
 
-    public static function dd($args)
+    #[NoReturn] public static function dd($args)
     {
         die(var_dump($args));
     }
