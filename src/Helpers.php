@@ -16,4 +16,9 @@ class Helpers
         $response->getBody()->write($blade->render());
         return $response;
     }
+
+    public static function dd($args)
+    {
+        die(var_dump($args));
+    }
 }

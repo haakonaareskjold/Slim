@@ -7,6 +7,8 @@ use App\Models\UserRepositoryInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\RequestInterface as Request;
 
+
+
 class UserController
 {
 
@@ -59,6 +61,7 @@ class UserController
 
     public function update(Request $request, $id, Response $response): Response
     {
+
         $name = $request->getParsedBody();
 
         $this->user->update($id, $name['name']);
