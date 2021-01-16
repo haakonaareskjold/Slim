@@ -7,8 +7,6 @@ use App\Models\UserRepositoryInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\RequestInterface as Request;
 
-
-
 class UserController
 {
 
@@ -68,7 +66,7 @@ class UserController
         return $response->withStatus(200)->withHeader('Location', '/users');
     }
 
-    public function destroy($id, Response $response, Request $request): Response
+    public function destroy($id, Response $response): Response
     {
         $this->user->delete($id);
 

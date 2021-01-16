@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Console\Users;
 
 use App\Models\UserRepository;

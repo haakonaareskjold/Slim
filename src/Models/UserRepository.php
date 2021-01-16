@@ -62,13 +62,13 @@ class UserRepository implements UserRepositoryInterface
         $this->entityManager->flush();
     }
 
-    public function update(string $id , string $name)
+    public function update(string $id, string $name)
     {
-       $user = $this->getUserById($id);
+        $user = $this->getUserById($id);
 
         if (!$user) {
             throw new Exception(
-                die('No User found for id '.$id)
+                die('No User found for id ' . $id)
             );
         }
 
@@ -82,7 +82,7 @@ class UserRepository implements UserRepositoryInterface
 
         if (!$user) {
             throw new Exception(
-                die('No User found for id '.$id)
+                die('No User found for id ' . $id)
             );
         }
 

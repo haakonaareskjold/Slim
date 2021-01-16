@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App\Https\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
-
 
 class RequestMiddleware
 {
