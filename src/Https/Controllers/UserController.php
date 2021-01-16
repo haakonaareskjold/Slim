@@ -42,7 +42,7 @@ class UserController
 
         $this->user->createUser(implode($name));
 
-        return $response->withStatus(302)->withHeader('Location', '/users');
+        return $response->withStatus(200)->withHeader('Location', '/users');
     }
 
     public function show(Response $response, $id): Response
@@ -61,18 +61,17 @@ class UserController
 
     public function update(Request $request, $id, Response $response): Response
     {
-
         $name = $request->getParsedBody();
 
         $this->user->update($id, $name['name']);
 
-        return $response->withStatus(302)->withHeader('Location', '/users');
+        return $response->withStatus(200)->withHeader('Location', '/users');
     }
 
-    public function destroy($id, Response $response): Response
+    public function destroy($id, Response $response, Request $request): Response
     {
         $this->user->delete($id);
 
-        return $response->withStatus(302)->withHeader('Location', '/users');
+        return $response->withStatus(200)->withHeader('Location', '/users');
     }
 }

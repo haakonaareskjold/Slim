@@ -2,10 +2,16 @@
 
 @section('content')
     <div>
-        @forelse($query as $user)
+        @forelse( $query as $user)
             <p>
-                User {{$user->getName()}} has an ID of {{$user->getId()}}
+                User {{ $user->getName()}}
             </p>
+            <div>
+                <form method="POST" action="/users/{{ $user->getId()}}/delete">
+                    <input type="hidden" name="_method" value="DELETE" />
+                    <input type="submit" value="DELETE">
+                </form>
+            </div>
         @empty
             <p>
                 No users found.
