@@ -7,8 +7,8 @@
                 User {{ $user->getName()}}
             </p>
             <div>
-                <form method="POST" action="/users/{{ $user->getId()}}/delete">
-                    <input type="hidden" name="_method" value="DELETE" />
+                <form method="POST" action="/users/{{ $user->getId()}}">
+                    <input type="hidden" name="_METHOD" value="DELETE" />
                     <input type="submit" value="DELETE">
                 </form>
             </div>

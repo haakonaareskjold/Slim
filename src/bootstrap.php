@@ -2,6 +2,7 @@
 
 use DI\Bridge\Slim\Bridge as AppFactory;
 use DI\ContainerBuilder;
+use Slim\Middleware\MethodOverrideMiddleware;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -30,4 +31,10 @@ $routes($app);
 // middleware
 $app->addErrorMiddleware(true, true, true);
 
+// routing middleware
+$app->addRoutingMiddleware();
+$methodOverrideMiddleware = new MethodOverrideMiddleware();
+$app->add($methodOverrideMiddleware);
+
+// running Slim
 $app->run();
