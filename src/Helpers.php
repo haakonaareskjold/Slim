@@ -20,6 +20,6 @@ class Helpers
 
     #[NoReturn] public static function dd($args)
     {
-        die(var_dump($args));
+        die(dump($args));
     }
 }
