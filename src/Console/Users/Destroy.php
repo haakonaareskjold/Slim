@@ -39,7 +39,7 @@ class Destroy extends Command
     {
         $this->UserRepository->delete($input->getArgument('id'));
 
-        $output->write("The user with the ID of '{$input->getArgument('id')}' has been deleted.");
+        $output->write("The user with the ID of '{$input->getArgument('id')}' has been deleted. \n");
         return Command::SUCCESS;
     }
 }

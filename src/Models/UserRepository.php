@@ -30,7 +30,7 @@ class UserRepository implements UserRepositoryInterface
     /**
      * @return object|array
      */
-    public function getAllUsers()
+    public function getAllUsers(): object|array
     {
         $user = $this->entityManager->getRepository('App\Models\User')->findAll();
 
@@ -45,7 +45,7 @@ class UserRepository implements UserRepositoryInterface
      * @param $id
      * @return object|array
      */
-    public function getUserById($id)
+    public function getUserById($id): object|array
     {
         $user = $this->entityManager->find('App\Models\User', $id);
 
@@ -56,13 +56,13 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
-    public function createUser($name)
+    public function createUser($name): void
     {
         $this->entityManager->persist($this->user->setName($name));
         $this->entityManager->flush();
     }
 
-    public function update(string $id, string $name)
+    public function update(string $id, string $name): void
     {
         $user = $this->getUserById($id);
 
@@ -76,7 +76,7 @@ class UserRepository implements UserRepositoryInterface
         $this->entityManager->flush();
     }
 
-    public function delete($id)
+    public function delete($id): void
     {
         $user = $this->entityManager->find('App\Models\User', $id);
 
