@@ -1,6 +1,7 @@
-@extends('layouts.base')
+{% extends "layouts/base.twig" %}
 
-@section('content')
+
+{% block content %}
     <div>
         <form method="POST" action="/users">
             <label for="name">Name:</label><br>
@@ -8,4 +9,4 @@
             <input type="submit" value="Submit">
         </form>
     </div>
-@endsection
+{% endblock %}

@@ -68,7 +68,7 @@ class UserRepository implements UserRepositoryInterface
 
         if (!$user) {
             throw new Exception(
-                die('No User found for id ' . $id)
+                die('No User found for id ' . $id . PHP_EOL)
             );
         }
 
@@ -82,7 +82,7 @@ class UserRepository implements UserRepositoryInterface
 
         if (!$user) {
             throw new Exception(
-                die('No User found for id ' . $id)
+                die('No User found for id ' . $id . PHP_EOL)
             );
         }
 

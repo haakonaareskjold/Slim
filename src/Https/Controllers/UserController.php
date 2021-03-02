@@ -23,14 +23,14 @@ class UserController
 
     public function index(Response $response): Response
     {
-        $query = $this->user->getAllUsers();
+        $users = $this->user->getAllUsers();
 
-        return Helpers::view($response, 'users.index', compact('query'));
+        return Helpers::view($response, 'users/index.twig', compact('users'));
     }
 
     public function create(Response $response): Response
     {
-        return Helpers::view($response, 'users.create');
+        return Helpers::view($response, 'users/create.twig');
     }
 
     public function store(Request $request, Response $response): Response
@@ -47,14 +47,14 @@ class UserController
     {
         $query = $this->user->getUserById($id);
 
-        return Helpers::view($response, 'users.show', compact('query'));
+        return Helpers::view($response, 'users/show.twig', compact('query'));
     }
 
     public function edit(Response $response, $id): Response
     {
         $query = $this->user->getUserById($id);
 
-        return Helpers::view($response, 'users.edit', compact('query'));
+        return Helpers::view($response, 'users/edit.twig', compact('query'));
     }
 
     public function update(Request $request, $id, Response $response): Response

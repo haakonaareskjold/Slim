@@ -13,8 +13,12 @@ class Helpers
         $cache = __DIR__ . '/../storage/views';
         $views = __DIR__ . '/../resources/views';
 
-        $blade = (new Blade($views, $cache))->make($template, $with);
-        $response->getBody()->write($blade->render());
+        $loader = new \Twig\Loader\FilesystemLoader($views);
+        $twig = new \Twig\Environment($loader, [
+            'cache' => $cache,
+        ]);
+
+        $response->getBody()->write($twig->render($template, $with));
         return $response;
     }
 
