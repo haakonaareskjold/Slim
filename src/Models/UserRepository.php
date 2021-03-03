@@ -30,7 +30,7 @@ class UserRepository implements UserRepositoryInterface
     /**
      * @return object|array
      */
-    public function getAllUsers(): object|array
+    public function getAllUsers(): object | array
     {
         $user = $this->entityManager->getRepository('App\Models\User')->findAll();
 
@@ -45,7 +45,7 @@ class UserRepository implements UserRepositoryInterface
      * @param $id
      * @return object|array
      */
-    public function getUserById($id): object|array
+    public function getUserById($id): object | array
     {
         $user = $this->entityManager->find('App\Models\User', $id);
 
