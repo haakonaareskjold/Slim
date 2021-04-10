@@ -8,7 +8,7 @@ use Doctrine\ORM\Tools\Setup;
 use Psr\Container\ContainerInterface;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 
-return function (ContainerBuilder $containerBuilder) {
+return static function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
         EntityManagerInterface::class => function (ContainerInterface $c): EntityManager {
             $doctrineSettings = $c->get('settings')['doctrine'];

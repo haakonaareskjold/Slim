@@ -2,13 +2,8 @@
 
 use Slim\App;
 
-return function (App $app) {
-
-    // Redirect to users
-    $app->redirect('/', '/users', 301);
-
-    // Users
-    $app->get('/users', [\App\Https\Controllers\UserController::class, 'index']);
+return static function (App $app) {
+    $app->get('/', [\App\Https\Controllers\UserController::class, 'index']);
     $app->get('/users/create', [\App\Https\Controllers\UserController::class, 'create']);
     $app->post('/users', [\App\Https\Controllers\UserController::class, 'store']);
     $app->get('/users/{id}', [\App\Https\Controllers\UserController::class, 'show']);

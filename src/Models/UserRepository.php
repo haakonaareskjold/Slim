@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Models\User;
 
 /**
  * Class UserRepository
@@ -28,17 +29,13 @@ class UserRepository implements UserRepositoryInterface
     }
 
     /**
-     * @return object|array
+     *
      */
-    public function getAllUsers(): object | array
+    public function getAllUsers()
     {
-        $user = $this->entityManager->getRepository('App\Models\User')->findAll();
+        $user = $this->entityManager->getRepository(User::class)->findAll();
 
-        if ($user !== null) {
-            return $user;
-        } else {
-            return $user  = [];
-        }
+        return $user ?? [];
     }
 
     /**
@@ -47,13 +44,9 @@ class UserRepository implements UserRepositoryInterface
      */
     public function getUserById($id): object | array
     {
-        $user = $this->entityManager->find('App\Models\User', $id);
+        $user = $this->entityManager->find(User::class, $id);
 
-        if ($user !== null) {
-            return $user;
-        } else {
-            return $user  = [];
-        }
+        return $user ?? [];
     }
 
     public function createUser($name): void
@@ -78,7 +71,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function delete($id): void
     {
-        $user = $this->entityManager->find('App\Models\User', $id);
+        $user = $this->entityManager->find(User::class, $id);
 
         if (!$user) {
             throw new Exception(

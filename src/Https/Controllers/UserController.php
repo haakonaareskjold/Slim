@@ -21,7 +21,7 @@ class UserController
         $this->user = $user;
     }
 
-    public function index(Response $response): Response
+    public function index(Response $response)
     {
         $users = $this->user->getAllUsers();
 
@@ -40,7 +40,7 @@ class UserController
 
         $this->user->createUser(implode($name));
 
-        return $response->withStatus(200)->withHeader('Location', '/users');
+        return $response->withStatus(200)->withHeader('Location', '/');
     }
 
     public function show(Response $response, $id): Response
@@ -63,13 +63,14 @@ class UserController
 
         $this->user->update($id, $name['name']);
 
-        return $response->withStatus(200)->withHeader('Location', '/users');
+        return $response->withStatus(200)->withHeader('Location', '/');
     }
 
     public function destroy($id, Response $response): Response
     {
         $this->user->delete($id);
 
-        return $response->withStatus(200)->withHeader('Location', '/users');
+        return $response->withStatus(200)->withHeader('Location', '/');
     }
+
 }
