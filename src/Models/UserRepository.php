@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Http\Message\ResponseInterface as Response;
 
 /**
  * Class UserRepository
@@ -12,20 +13,11 @@ use Doctrine\ORM\EntityManagerInterface;
 class UserRepository implements UserRepositoryInterface
 {
 
-    private EntityManagerInterface $entityManager;
-
-    /**
-     * @var User
-     */
-    private User $user;
 
     public function __construct(
-        EntityManagerInterface $entityManager,
-        User $user
-    ) {
-        $this->entityManager = $entityManager;
-        $this->user = $user;
-    }
+        private EntityManagerInterface $entityManager,
+        private User $user,
+    ) {}
 
     /**
      *
@@ -68,9 +60,18 @@ class UserRepository implements UserRepositoryInterface
         $this->entityManager->flush();
     }
 
-    public function delete($id): void
+    /**
+     * @param $id
+     * @param Response $response
+     * @return Response
+     * @throws Exception
+     */
+    public function delete($id, Response $response): Response
     {
         $user = $this->entityManager->find(User::class, $id);
+
+        $this->entityManager->remove($user);
+        $this->entityManager->flush();
 
         if (!$user) {
             throw new Exception(
@@ -78,7 +79,6 @@ class UserRepository implements UserRepositoryInterface
             );
         }
 
-        $this->entityManager->remove($user);
-        $this->entityManager->flush();
+        return $response->withStatus(204);
     }
 }
