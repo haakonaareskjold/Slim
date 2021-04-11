@@ -62,9 +62,9 @@ class UserController
 
     public function destroy($id, Response $response): Response
     {
-        $this->user->delete($id, $response);
+        $this->user->delete($id);
 
-        return $response->withHeader('Location', '/');
+        return $response->withStatus(200)->withHeader('Location', '/');
     }
 
 }
