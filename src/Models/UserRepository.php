@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Models\User;
 
 /**
  * Class UserRepository

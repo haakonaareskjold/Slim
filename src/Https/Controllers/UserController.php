@@ -4,33 +4,27 @@ namespace App\Https\Controllers;
 
 use App\Helpers;
 use App\Models\UserRepositoryInterface;
+use App\View;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\RequestInterface as Request;
 
 class UserController
 {
 
-    /**
-     * @var UserRepositoryInterface
-     */
-    private UserRepositoryInterface $user;
 
-    public function __construct(
-        UserRepositoryInterface $user
-    ) {
-        $this->user = $user;
-    }
+
+    public function __construct(private UserRepositoryInterface $user){}
 
     public function index(Response $response)
     {
         $users = $this->user->getAllUsers();
 
-        return Helpers::view($response, 'users/index.twig', compact('users'));
+        return View::render($response, 'users/index.twig', compact('users'));
     }
 
     public function create(Response $response): Response
     {
-        return Helpers::view($response, 'users/create.twig');
+        return View::render($response, 'users/create.twig');
     }
 
     public function store(Request $request, Response $response): Response
@@ -47,14 +41,14 @@ class UserController
     {
         $query = $this->user->getUserById($id);
 
-        return Helpers::view($response, 'users/show.twig', compact('query'));
+        return View::render($response, 'users/show.twig', compact('query'));
     }
 
     public function edit(Response $response, $id): Response
     {
         $query = $this->user->getUserById($id);
 
-        return Helpers::view($response, 'users/edit.twig', compact('query'));
+        return View::render($response, 'users/edit.twig', compact('query'));
     }
 
     public function update(Request $request, $id, Response $response): Response
