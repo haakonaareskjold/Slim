@@ -35,6 +35,7 @@ $app->addErrorMiddleware(true, true, true);
 $app->addRoutingMiddleware();
 $methodOverrideMiddleware = new MethodOverrideMiddleware();
 $app->add($methodOverrideMiddleware);
+$app->addBodyParsingMiddleware();
 
 // running Slim
 $app->run();

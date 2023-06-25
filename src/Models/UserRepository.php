@@ -48,6 +48,11 @@ class UserRepository implements UserRepositoryInterface
         return $user ?? [];
     }
 
+    public function getUserName()
+    {
+       return $this->user->getName();
+    }
+
     public function createUser($name): void
     {
         $this->entityManager->persist($this->user->setName($name));

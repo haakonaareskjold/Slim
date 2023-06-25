@@ -10,9 +10,6 @@ use Psr\Http\Message\RequestInterface as Request;
 
 class UserController
 {
-
-
-
     public function __construct(private UserRepositoryInterface $user){}
 
     public function index(Response $response)
@@ -57,14 +54,17 @@ class UserController
 
         $this->user->update($id, $name['name']);
 
-        return $response->withStatus(200)->withHeader('Location', '/');
+       return $response->withHeader('Location', '/')->withStatus(302);
     }
 
     public function destroy($id, Response $response): Response
     {
-        $this->user->delete($id);
-
-        return $response->withStatus(200)->withHeader('Location', '/');
+        try {
+            $this->user->delete($id);
+            return $response->withHeader('Location', '/')->withStatus(302);
+        } catch (\Exception $e) {
+            return $response->withHeader('content-type', 'application/json')->withStatus(500);
+        }
     }
 
 }

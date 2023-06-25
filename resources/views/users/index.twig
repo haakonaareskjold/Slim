@@ -3,15 +3,18 @@
 {% block content %}
     <div>
         {% for user in users %}
-            <p>
-                User {{user.getName}}
-            </p>
-            <div>
-                <form method="POST" action="/users/{{user.getId}}">
-                    <input type="hidden" name="_METHOD" value="DELETE" />
-                    <input type="submit" value="DELETE">
-                </form>
+            <div hx-target="this" hx-swap="outerHTML">
+                <div><label>Name</label>: {{ user.getName }}</div>
+
+                <button hx-delete="/users/{{ user.getId }}" hx-target="body">
+                    Delete user
+                </button>
+
+                <button hx-get="/users/{{ user.getId }}/edit" class="btn btn-primary">
+                    Click To Edit
+                </button>
             </div>
+
         {% else %}
         <p>No users found.</p>
         {% endfor %}

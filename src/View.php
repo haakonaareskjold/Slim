@@ -13,7 +13,8 @@ class View
 
         $loader = new \Twig\Loader\FilesystemLoader($views);
         $twig = new \Twig\Environment($loader, [
-            'cache' => $cache,
+            'debug' => true,
+            'cache' => false,
         ]);
 
         $response->getBody()->write($twig->render($template, $with));

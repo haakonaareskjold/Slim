@@ -1,13 +1,14 @@
 <?php
 
+use App\Https\Controllers\UserController;
 use Slim\App;
 
 return static function (App $app) {
-    $app->get('/', [\App\Https\Controllers\UserController::class, 'index']);
-    $app->get('/users/create', [\App\Https\Controllers\UserController::class, 'create']);
-    $app->post('/users', [\App\Https\Controllers\UserController::class, 'store']);
-    $app->get('/users/{id}', [\App\Https\Controllers\UserController::class, 'show']);
-    $app->get('/users/{id}/edit', [\App\Https\Controllers\UserController::class, 'edit']);
-    $app->put('/users/{id}', [\App\Https\Controllers\UserController::class, 'update']);
-    $app->delete('/users/{id}', [\App\Https\Controllers\UserController::class, 'destroy']);
+    $app->get('/', [UserController::class, 'index']);
+    $app->get('/users/create', [UserController::class, 'create']);
+    $app->post('/users', [UserController::class, 'store']);
+    $app->get('/users/{id}', [UserController::class, 'show']);
+    $app->get('/users/{id}/edit', [UserController::class, 'edit']);
+    $app->put('/users/{id}', [UserController::class, 'update']);
+    $app->delete('/users/{id}', [UserController::class, 'destroy']);
 };
